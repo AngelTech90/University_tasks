@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios PHP Interactivos - Tarea 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .exercise {
+            background: #f8f9fa;
+            margin: 25px 0;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .exercise:hover {
+            transform: translateY(-2px);
+        }
+        
+        .exercise h3 {
+            color: #495057;
+            margin-top: 0;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        
+        .form-group {
+            margin: 15px 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        
+        input[type="number"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .result.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result h4 {
+            margin-top: 0;
+            color: #155724;
+        }
+        
+        .result-item {
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #c3e6cb;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Ejercicios PHP Interactivos - Tarea 4</h1>
+        
+        <!-- Ejercicio 1: IMC Calculator -->
+        <div class="exercise">
+            <h3>📊 Ejercicio 1: Calculadora de IMC</h3>
+            <div class="form-group">
+                <label for="peso">Peso (kg):</label>
+                <input type="number" id="peso" step="0.1" value="70">
+            </div>
+            <div class="form-group">
+                <label for="altura">Altura (m):</label>
+                <input type="number" id="altura" step="0.01" value="1.75">
+            </div>
+            <button onclick="calcularIMC()">Calcular IMC</button>
+            <div id="resultadoIMC" class="result">
+                <h4>Resultado del IMC:</h4>
+                <div id="imcOutput"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 4: Triangle Area -->
+        <div class="exercise">
+            <h3>📐 Ejercicio 4: Área del Triángulo</h3>
+            <div class="form-group">
+                <label for="base">Base (unidades):</label>
+                <input type="number" id="base" step="0.1" value="10">
+            </div>
+            <div class="form-group">
+                <label for="alturaTriangulo">Altura (unidades):</label>
+                <input type="number" id="alturaTriangulo" step="0.1" value="8">
+            </div>
+            <button onclick="calcularAreaTriangulo()">Calcular Área</button>
+            <div id="resultadoTriangulo" class="result">
+                <h4>Resultado del Área:</h4>
+                <div id="trianguloOutput"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 7: Mathematical Operations -->
+        <div class="exercise">
+            <h3>🧮 Ejercicio 7: Operaciones Matemáticas</h3>
+            <div class="form-group">
+                <label for="num1">Número 1:</label>
+                <input type="number" id="num1" value="15">
+            </div>
+            <div class="form-group">
+                <label for="num2">Número 2:</label>
+                <input type="number" id="num2" value="4">
+            </div>
+            <button onclick="calcularOperaciones()">Realizar Operaciones</button>
+            <div id="resultadoOperaciones" class="result">
+                <h4>Resultados de las Operaciones:</h4>
+                <div id="operacionesOutput"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 15: Even or Odd -->
+        <div class="exercise">
+            <h3>🔢 Ejercicio 15: Par o Impar</h3>
+            <div class="form-group">
+                <label for="numeroParImpar">Número entero positivo:</label>
+                <input type="number" id="numeroParImpar" min="1" value="17">
+            </div>
+            <button onclick="determinarParImpar()">Verificar</button>
+            <div id="resultadoParImpar" class="result">
+                <h4>Resultado:</h4>
+                <div id="parImparOutput"></div>
+            </div>
+        </div>
+
+        <!-- Ejercicio 18: Greater of two negative numbers -->
+        <div class="exercise">
+            <h3>➖ Ejercicio 18: Mayor de dos números negativos</h3>
+            <div class="form-group">
+                <label for="negativo1">Número negativo 1:</label>
+                <input type="number" id="negativo1" max="-1" value="-15">
+            </div>
+            <div class="form-group">
+                <label for="negativo2">Número negativo 2:</label>
+                <input type="number" id="negativo2" max="-1" value="-7">
+            </div>
+            <button onclick="encontrarMayorNegativo()">Encontrar Mayor</button>
+            <div id="resultadoMayorNegativo" class="result">
+                <h4>Resultado:</h4>
+                <div id="mayorNegativoOutput"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calcularIMC() {
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+            
+            if (peso <= 0 || altura <= 0) {
+                alert('Por favor, ingrese valores válidos positivos');
+                return;
+            }
+            
+            const imc = peso / (altura * altura);
+            let clasificacion;
+            
+            if (imc < 18.5) {
+                clasificacion = "Bajo peso";
+            } else if (imc >= 18.5 && imc < 25) {
+                clasificacion = "Peso normal";
+            } else if (imc >= 25 && imc < 30) {
+                clasificacion = "Sobrepeso";
+            } else {
+                clasificacion = "Obesidad";
+            }
+            
+            document.getElementById('imcOutput').innerHTML = `
+                <div class="result-item"><strong>Peso:</strong> ${peso} kg</div>
+                <div class="result-item"><strong>Altura:</strong> ${altura} m</div>
+                <div class="result-item"><strong>IMC:</strong> ${imc.toFixed(2)}</div>
+                <div class="result-item"><strong>Clasificación:</strong> ${clasificacion}</div>
+            `;
+            
+            document.getElementById('resultadoIMC').classList.add('show');
+        }
+
+        function calcularAreaTriangulo() {
+            const base = parseFloat(document.getElementById('base').value);
+            const altura = parseFloat(document.getElementById('alturaTriangulo').value);
+            
+            if (base <= 0 || altura <= 0) {
+                alert('Por favor, ingrese valores válidos positivos');
+                return;
+            }
+            
+            const area = (base * altura) / 2;
+            
+            document.getElementById('trianguloOutput').innerHTML = `
+                <div class="result-item"><strong>Base:</strong> ${base} unidades</div>
+                <div class="result-item"><strong>Altura:</strong> ${altura} unidades</div>
+                <div class="result-item"><strong>Fórmula:</strong> a = (b × h) / 2</div>
+                <div class="result-item"><strong>Área:</strong> ${area} unidades cuadradas</div>
+            `;
+            
+            document.getElementById('resultadoTriangulo').classList.add('show');
+        }
+
+        function calcularOperaciones() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                alert('Por favor, ingrese números válidos');
+                return;
+            }
+            
+            const suma = num1 + num2;
+            const resta = num1 - num2;
+            const multiplicacion = num1 * num2;
+            const division = num2 !== 0 ? (num1 / num2) : 'No se puede dividir por cero';
+            const residuo = num2 !== 0 ? (num1 % num2) : 'No se puede obtener residuo de división por cero';
+            
+            document.getElementById('operacionesOutput').innerHTML = `
+                <div class="result-item"><strong>Números:</strong> ${num1} y ${num2}</div>
+                <div class="result-item"><strong>Suma (+):</strong> ${suma}</div>
+                <div class="result-item"><strong>Resta (-):</strong> ${resta}</div>
+                <div class="result-item"><strong>Multiplicación (×):</strong> ${multiplicacion}</div>
+                <div class="result-item"><strong>División (÷):</strong> ${typeof division === 'number' ? division.toFixed(2) : division}</div>
+                <div class="result-item"><strong>Residuo (%):</strong> ${residuo}</div>
+            `;
+            
+            document.getElementById('resultadoOperaciones').classList.add('show');
+        }
+
+        function determinarParImpar() {
+            const numero = parseInt(document.getElementById('numeroParImpar').value);
+            
+            if (numero < 1 || isNaN(numero)) {
+                alert('Por favor, ingrese un número entero positivo');
+                return;
+            }
+            
+            const residuo = numero % 2;
+            const resultado = residuo === 0 ? "par" : "impar";
+            
+            document.getElementById('parImparOutput').innerHTML = `
+                <div class="result-item"><strong>Número:</strong> ${numero}</div>
+                <div class="result-item"><strong>Residuo de ${numero} % 2:</strong> ${residuo}</div>
+                <div class="result-item"><strong>El número ${numero} es:</strong> ${resultado}</div>
+            `;
+            
+            document.getElementById('resultadoParImpar').classList.add('show');
+        }
+
+        function encontrarMayorNegativo() {
+            const num1 = parseFloat(document.getElementById('negativo1').value);
+            const num2 = parseFloat(document.getElementById('negativo2').value);
+            
+            if (num1 >= 0 || num2 >= 0) {
+                alert('Por favor, ingrese solo números negativos');
+                return;
+            }
+            
+            const mayor = num1 > num2 ? num1 : num2;
+            const mensaje = num1 > num2 ? `El número ${num1} es el mayor` : `El número ${num2} es el mayor`;
+            
+            document.getElementById('mayorNegativoOutput').innerHTML = `
+                <div class="result-item"><strong>Número 1:</strong> ${num1}</div>
+                <div class="result-item"><strong>Número 2:</strong> ${num2}</div>
+                <div class="result-item"><strong>Comparación:</strong> ${num1} > ${num2} = ${num1 > num2}</div>
+                <div class="result-item"><strong>Resultado:</strong> ${mensaje}</div>
+                <div class="result-item"><strong>El mayor es:</strong> ${mayor}</div>
+            `;
+            
+            document.getElementById('resultadoMayorNegativo').classList.add('show');
+        }
+    </script>
+</body>
+</html>
